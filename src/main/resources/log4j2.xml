@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+
+		<RollingFile name="File1" append="true" fileName="logs/PomRestRunner.txt"  filePattern = "PomRestRunner-%i.txt" >
+			<PatternLayout pattern="%d{dd/MM/yy HH:mm:ss:SSS} | %5p | %15.15t | %30.30C{1.} | %-20.20M | %m%n"/>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB"/>
+			</Policies>
+			<DefaultRolloverStrategy max="5"/>
+		</RollingFile>
+
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{dd/MM/yy HH:mm:ss:SSS} %-5p [%t] %C{2}.%M (%F:%L) - %m%n"/>
+		</Console>
+
+	</Appenders>
+
+	<Loggers>
+
+		<Logger name="Run" level="debug" additivity="false">
+
+			<AppenderRef ref="File1" level="debug"/>
+
+			<AppenderRef ref="STDOUT" level="error"/>
+
+		</Logger>
+
+
+		<Root  level="debug">
+			<AppenderRef ref="STDOUT"/>
+		</Root>
+
+	</Loggers>
+</Configuration>
